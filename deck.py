@@ -1,6 +1,6 @@
-from Ranks import Rank
-from Suites import Suite
-from Card import Card
+from ranks import Rank
+from suites import Suite
+from card import Card
 class Deck():
 	def __init__(self):
 		cards = []
