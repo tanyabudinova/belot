@@ -27,11 +27,12 @@ class SequelCombination():
 			self.points = 100
 
 	def __str__(self):
+		text = ''.join([str(x) + ' ' for x in self.combination])
 		if self.points == 20:
-			return "tierce"
+			return f"{text} - tierce"
 		if self.points == 50:
-			return "quarte"
-		return "quinte"
+			return f"{text} - quarte"
+		return f"{text} - quinte"
 
 	def get_highest_card(self):
 		return self.combination[-1]

@@ -119,7 +119,7 @@ class TestSequelCombination(unittest.TestCase):
 		result = str(combination)
 
 		#ASSERT
-		self.assertEqual(result, "tierce")
+		self.assertEqual(result, "7c 8c 9c  - tierce")
 
 	def test_returns_true_if_correct_string_is_returned_for_quarte(self):
 		#ARRANGE
@@ -130,7 +130,7 @@ class TestSequelCombination(unittest.TestCase):
 		result = str(combination)
 
 		#ASSERT
-		self.assertEqual(result, "quarte")
+		self.assertEqual(result, "7c 8c 9c 10c  - quarte")
 
 	def test_returns_true_if_correct_string_is_returned_for_quinte(self):
 		#ARRANGE
@@ -141,7 +141,7 @@ class TestSequelCombination(unittest.TestCase):
 		result = str(combination)
 
 		#ASSERT
-		self.assertEqual(result, "quinte")
+		self.assertEqual(result, "7c 8c 9c 10c Jc  - quinte")
 
 	def test_returns_highest_card_of_the_combination(self):
 		#ARRANGE
