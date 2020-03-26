@@ -35,7 +35,7 @@ class TestCard(unittest.TestCase):
 		self.assertEqual(result, "10d")
 
 	def test_returns_true_if_card_as__is_printed_correctly(self):
-		#AEEANGE
+		#ARRANGE
 		card = Card(13, 4)
 
 		#ACT
@@ -43,6 +43,17 @@ class TestCard(unittest.TestCase):
 
 		#ASSERT
 		self.assertEqual(result, "Ks")
+
+	def test_returns_true_if_two_cards_with_equal_rank_and_suit_are_compared(self):
+		#ARRANGE
+		card_one = Card(13, 4)
+		card_two = Card(13, 4)
+
+		#ACT
+		result = card_one == card_two
+
+		#ASSERT
+		self.assertTrue(result)
 
 if __name__ == '__main__':
 	unittest.main()

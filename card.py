@@ -13,3 +13,6 @@ class Card():
 
     def __str__(self):
         return f"{self.rank}{self.suit}"
+
+    def __eq__(self, other):
+    	return self.suit.value == other.suit.value and self.rank.value == other.rank.value
