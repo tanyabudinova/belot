@@ -13,4 +13,12 @@ class Rank(Enum):
         return self.value > other.value
 
     def __str__(self):
-        return str(self.value)
+        if self.value in range(7, 10):
+            return str(self.value)
+        if self.value == 11:
+            return 'J'
+        if self.value == 12:
+            return 'Q'
+        if self.value == 13:
+            return 'K'
+        return 'A'
