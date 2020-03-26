@@ -13,7 +13,7 @@ class Rank(Enum):
         return self.value > other.value
 
     def __str__(self):
-        if self.value in range(7, 10):
+        if self.value in range(7, 11):
             return str(self.value)
         if self.value == 11:
             return 'J'
