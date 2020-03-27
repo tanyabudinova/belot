@@ -63,4 +63,15 @@ class Player:
                     if len(l[i]) >= 4:
                         result.append(Announcement(Announcement_Type.Quinte, group[idx]))
         return result
+
+        def player_actions(self, hand, mode):
+            receive_cards(hand)
+            __order_cards()
+            return announce(mode)
+
+        def get_name(self):
+            return self.name
+
+        
+
             
