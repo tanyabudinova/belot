@@ -37,7 +37,7 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(expected, player.get_hand())
 
     def test_announce_with_belot_when_in_the_correct_suit_mode(self):
-        cards = generate_cards(["7s", "8s", "9s", "10c", "11d", "12d", "13d", "14s"])
+        cards = generate_cards(["10c", "11h", "12d", "13d", "14s"])
         player = Player("Panda")
 
         player.receive_cards(cards)
@@ -46,7 +46,7 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual([Announcement(Announcement_Type.Belote,None)], result)
 
     def test_announce_with_belot_when_not_in_the_correct_suit_mode(self):
-        cards = generate_cards(["7s", "8s", "9s", "10c", "11d", "12d", "13d", "14s"])
+        cards = generate_cards(["10c", "11h", "12d", "13d", "14s"])
         player = Player("Panda")
 
         player.receive_cards(cards)
@@ -55,8 +55,8 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual([], result)
 
     def test_announce_with_belot_when_in_all_trumps_mode(self):
-        cards_with_belot = generate_cards(["7s", "8s", "9s", "12c", "13c", "12d", "13d", "14s"])
-        cards_without_belot = generate_cards(["7s", "8s", "9s", "12c", "14c", "12d", "13s", "14s"])
+        cards_with_belot = generate_cards(["12c", "13c", "12d", "13d", "14s"])
+        cards_without_belot = generate_cards(["12c", "14c", "12d", "13s", "14s"])
         player = Player("Panda")
 
         player.receive_cards(cards_with_belot)
@@ -67,19 +67,26 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual([Announcement(Announcement_Type.Belote,None)], result)
         self.assertEqual([], result2)
 
-    def test_announce_with_cosecutive_cards(self):
-        # cards_tierce = generate_cards(["7s", "8s", "9s", "10c", "13c", "12d", "13d", "14s"])
-        # player = Player("Panda")
+    def test_announce_with_consecutive_cards(self):
+        cards_tierce = generate_cards(["7s", "8s", "9s", "10c", "13c", "12h", "13d", "14s"])
+        cards_quarte = generate_cards(["7s", "8s", "9s", "10s", "13c", "12h", "13d", "14s"])
+        cards_quinte = generate_cards(["8s", "9s", "10s", "11s", "12s", "13d", "14s"])
+        player = Player("Panda")
 
-        # player.receive_cards(cards_quarte)
-        # result = player.announce(Mode.All_Trumps)
+        player.receive_cards(cards_tierce)
+        result = player.announce(Mode.All_Trumps)
+        player.receive_cards(cards_quarte)
+        result2 = player.announce(Mode.All_Trumps)
+        player.receive_cards(cards_quinte)
+        result3 = player.announce(Mode.All_Trumps)
 
-        # self.assertEqual([Announcement(Announcement_Type.Quarte,7)], result)
-        pass
+        self.assertEqual([Announcement(Announcement_Type.Tierce,7)], result)
+        self.assertEqual([Announcement(Announcement_Type.Quarte,7)], result2)
+        self.assertEqual([Announcement(Announcement_Type.Quinte,8)], result3)
 
     def test_announce_with_carre(self):
-        cards_no_carre = generate_cards(["7s", "8s", "9s", "7c", "7d", "12d", "13d", "7h"])
-        cards_carre = generate_cards(["7s", "8s", "9s", "9c", "9d", "12d", "13d", "9h"])
+        cards_no_carre = generate_cards(["7c", "7d", "12d", "13d", "7h"])
+        cards_carre = generate_cards(["9s", "9c", "9d", "12d", "13d", "9h"])
         player = Player("Panda")
         
         player.receive_cards(cards_no_carre)
@@ -91,7 +98,15 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual([Announcement(Announcement_Type.Carre,9)], result2)
 
     def test_announce_with_more_announcements(self):
-        pass
-    
+        cards_two_tierces_and_belote = generate_cards(["7s", "8s", "9s", "12s", "13s", "12h", "13d", "14s"])
+        player = Player("Panda")
+
+        player.receive_cards(cards_two_tierces_and_belote)
+        result = player.announce(Mode.All_Trumps)
+
+        self.assertEqual([Announcement(Announcement_Type.Belote, None), 
+                          Announcement(Announcement_Type.Tierce,7),
+                          Announcement(Announcement_Type.Tierce,12)], result)
+
 if __name__ == '__main__':
     unittest.main()

@@ -66,11 +66,11 @@ class Announcement:
 
     def __str__(self):
         if self.__a_type == Announcement_Type.Belote:
-            return srt(self.type)
+            return str(self.__a_type)
         elif self.__a_type == Announcement_Type.Carre:
-            return srt(self.type) + "of " + str(self.__info) + 's'
+            return str(self.__a_type) + " of " + str(self.__info) + 's'
         else:
-            return str(self.type) + "from" + str(self.__info)
+            return str(self.__a_type) + " from " + str(self.__info)
 
     def __eq__(self, other):
         return (self.__a_type, self.__info) == (other.__a_type, other.__info)
