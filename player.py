@@ -1,6 +1,9 @@
-from announcements import Announcement
-from card import Card
+from announcements import *
 from operator import attrgetter
+from modes import Mode
+from ranks import Rank
+from suits import Suit
+from utils import has_belote_in_hand
 
 class Player:
     def __init__(self, name):
@@ -19,13 +22,26 @@ class Player:
         self.__order_cards()
 
     def announce(self, mode):
-        pass
+        announcement = []
+        announcement.append(self.__has_belote(mode))
+        announcement.append(self.__has_carre())
+        return list(filter(None,announcement))
 
-    def __has_belot(self, mode):
-        pass
+    def __has_belote(self, mode):
+        if mode != Mode.All_Trumps:
+            return has_belote_in_hand(mode.value, self.__hand)
+        else:
+            for i in range(1,5):
+                belote = has_belote_in_hand(i, self.__hand)
+                if belote:
+                    return belote
 
     def __has_carre(self):
-        pass
+        hand_ranks = list(map(attrgetter("rank"), self.__hand))
+        ranks =[Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace]
+        for i in ranks:
+            if hand_ranks.count(i) == 4:
+                return Announcement(Announcement_Type.Carre,i.value)
 
     def __has_consecutive_cards(self):
         pass
