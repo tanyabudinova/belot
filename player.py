@@ -64,12 +64,11 @@ class Player:
                         result.append(Announcement(Announcement_Type.Quinte, group[idx]))
         return result
 
-        def player_actions(self, hand, mode):
-            receive_cards(hand)
-            __order_cards()
-            return announce(mode)
+    def player_actions(self, hand, mode):
+            self.receive_cards(hand)
+            return self.announce(mode)
 
-        def get_name(self):
+    def get_name(self):
             return self.name
 
         

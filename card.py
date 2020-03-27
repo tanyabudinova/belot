@@ -15,4 +15,4 @@ class Card():
         return f"{self.rank}{self.suit}"
 
     def __eq__(self, other):
-    	return self.suit.value == other.suit.value and self.rank.value == other.rank.value
+    	return (self.suit == other.suit) and (self.rank == other.rank)
