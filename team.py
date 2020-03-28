@@ -15,6 +15,6 @@ class Team():
 		return self.name
 
 	def __str__(self):
-		return f"{self.name} players: {player_one.get_name}, {player_two.get_name}"
+		return f"{self.name} players: {self.player_one.get_name()}, {self.player_two.get_name()}"
 
 		

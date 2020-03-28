@@ -47,7 +47,7 @@ class Player:
     def __has_consecutive_cards(self):
         result = []
         grouped_hand = [list(g) for _, g in groupby(self.__hand, key = attrgetter("suit"))]
-        grouped_hand = (list(map(lambda y: list(map(lambda x: x.rank, y)),grouped_hand)))
+        grouped_hand = (list(map(lambda y: list(map(lambda x: x.rank.value, y)),grouped_hand)))
         for group in grouped_hand:
             l = []
             for i in range(len(group) - 1):

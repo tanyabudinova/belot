@@ -3,8 +3,8 @@ from suits import Suit
 
 class Card():
     def __init__(self, rank, suit):
-        self.rank = rank
-        self.suit = suit
+        self.rank = Rank(rank)
+        self.suit = Suit(suit)
 
     def __gt__(self, other):
     	if self.suit == other.suit:
