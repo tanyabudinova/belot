@@ -9,7 +9,6 @@ class Round():
 		self.deck = Deck()
 		self.mode = random.choice(Mode)
 
-	#това май може да се отдели като utulk-а, но не съм сигурен
 	def draw_seven_cards(self):
 		hand = []
 		for i in range(7):
@@ -19,8 +18,9 @@ class Round():
 		return hand
 
 	def round_actions(self):
-		team_one_announcements = team_one.announce(self.mode, draw_seven_cards(), draw_seven_cards())
-		team_two_announcement = team_two.announce(self.mode, draw_seven_cards(), draw_seven_cards())
+		team_one_announcements = team_one.announce(self.mode, self.draw_seven_cards(), self.draw_seven_cards())
+		team_two_announcements = team_two.announce(self.mode, self.draw_seven_cards(), self.draw_seven_cards())
+		return sum_up_points(team_one_announcement, team_two_announcements)
 
 	def count_points_of_announcements(self):
 		pass

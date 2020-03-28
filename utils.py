@@ -23,3 +23,21 @@ def group(list):
             curr_group.append(list[i])
     result.append(curr_group[:])
     return result
+def find_max_sequel_announce(announcements):
+    return max([x for x in announcements])
+
+def sum_points_with_sequentials(team_announcements):
+    return sum([x.points() for x in team_announcements])
+
+def sum_points_without_sequentials(team_announcements):
+    return sum([x.points() for x in team_announcements if not x.is_sequential()])
+
+def sum_up_points(team_one_announcements, team_two_announcements):
+    if find_max_sequel_announce(team_one_announcements) > find_max_sequel_announce(team_two_announcements):
+        return (sum_points_with_sequentials(team_one_announcements), sum_points_without_sequentials(team_two_announcements))
+    elif find_max_sequel_announce(team_two_announcements) > find_max_sequel_announce(team_one_announcements):
+        return (sum_points_without_sequentials(team_one_announcements), sum_points_with_sequentials(team_two_announcements))
+    return (sum_points_without_sequentials(team_one_announcements), sum_points_without_sequentials(team_two_announcements))
+
+
+
