@@ -45,6 +45,9 @@ class Tournament:
             column1 = f"{sum([x.get_team_one_points() for x in rounds[:i]])} + {rounds[i].get_team_one_points()}"
             column2 = f"{sum([x.get_team_two_points() for x in rounds[:i]])} + {rounds[i].get_team_two_points()}"
             rows.append([column1,column2])
+        column1 = f"{sum([x.get_team_one_points() for x in rounds])}"
+        column2 = f"{sum([x.get_team_two_points() for x in rounds])}"
+        rows.append([column1,column2])
         table.add_rows(rows, header = False)
         file.write(table.draw())
         file.write('\n')
