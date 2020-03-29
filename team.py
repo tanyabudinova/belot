@@ -6,7 +6,7 @@ class Team():
 		self.player_one = Player(name_one)
 		self.player_two = Player(name_two)
 		self.team_announcements = []
-		self.points = 0
+		self.games_won = 0
 
 	def announce(self, mode, hand_one, hand_two):
 			return self.player_one.player_actions(hand_one, mode) + self.player_two.player_actions(hand_two, mode)
@@ -16,5 +16,8 @@ class Team():
 
 	def __str__(self):
 		return f"{self.name} players: {self.player_one.get_name()}, {self.player_two.get_name()}"
+
+	def game_won(self):
+		self.games_won += 1
 
 		

@@ -10,6 +10,9 @@ class Announcement_Type(Enum):
     def __str__(self):
         return self.name.lower()
 
+    def __gt__(self, other):
+        return self.value > other.value
+
     def is_sequential(self):
         return self.value >= Announcement_Type.Tierce.value
 
@@ -33,7 +36,7 @@ class Announcement:
         return (self.__a_type, self.__info) == (other.__a_type, other.__info)
 
     def __gt__(self, other):
-        if self.__a_type.is_sequential() and other.__a_type.is_sequential():
+        if self.is_sequential() and other.is_sequential():
             if self.__a_type == other.__a_type:
                 return self.__info > other.__info
         return self.__a_type > other.__a_type
@@ -51,4 +54,9 @@ class Announcement:
         elif self.__a_type.name == 'Quinte':
             return 100
         elif self.__a_type.name == 'Carre':
-            return 200
+            if self.__info == 9:
+                return 150
+            if self.__info == 11:
+                return 200
+            else:
+                return 100

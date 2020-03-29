@@ -11,7 +11,7 @@ class TestSumUpPoints(unittest.TestCase):
 
 		#ASSERT
 		self.assertEqual(result, 240)
-	def test_returns_correct_points_for_sequential(self):
+	def test_returns_correct_points_without_sequential(self):
 		#ARRANGE
 		announcements = [Announcement(Announcement_Type(1), ''), Announcement(Announcement_Type(3), ''), Announcement(Announcement_Type(2), '')]
 		
